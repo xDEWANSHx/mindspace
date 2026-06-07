@@ -2,38 +2,15 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Check, Copy, MapPin, X, ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { Check, Copy, MapPin, X, ExternalLink } from "lucide-react";
 
 export default function BentoMatrix() {
   const [lightboxImg, setLightboxImg] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  const galleryImages = [
-    {
-      src: "/assets/gallery_quiet_study.png",
-      alt: "Ergonomic study cabins with warm focus lighting",
-      span: "row-span-2 col-span-1 h-[340px] md:h-full",
-    },
-    {
-      src: "/assets/gallery_relax_lounge.png",
-      alt: "Relaxation lounge area with velvet seating",
-      span: "row-span-1 col-span-1 h-[160px] md:h-[220px]",
-    },
-    {
-      src: "/assets/gallery_book_stack.png",
-      alt: "Classic leather-bound reference book shelf",
-      span: "row-span-1 col-span-1 h-[160px] md:h-[220px]",
-    },
-    {
-      src: "/assets/library_interior.png",
-      alt: "Main library overview showcasing bookshelf modules",
-      span: "row-span-1 col-span-2 h-[180px] md:h-[200px]",
-    },
-  ];
-
   const handleCopyCoords = async () => {
     try {
-      await navigator.clipboard.writeText("28.6273, 77.3725");
+      await navigator.clipboard.writeText("22.1245, 83.1936");
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch (err) {
@@ -64,221 +41,276 @@ export default function BentoMatrix() {
             GALLERY & <span className="text-accent-aqua-core">PLANS</span>
           </h2>
           <p className="text-ink-secondary text-sm md:text-base leading-relaxed">
-            Explore our spaces, choose your plan, and find your way to us.
+            Explore our sanctuary cabins, choose your study shift, and pinpoint our coordinates.
           </p>
         </div>
 
-        {/* 12-Column Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 w-full">
+        {/* 9-Column Bento Grid matching user sketch */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full relative">
           
-          {/* Bento Block A: UNBIASED PRICING TIERS (6 Columns) */}
-          <div className="lg:col-span-6 bg-bg-warm-elevated border border-stone-200/50 p-8 squircle-md shadow-sm flex flex-col justify-between gap-8 h-full">
-            <div className="flex flex-col gap-2">
-              <span className="text-xs uppercase tracking-wider text-accent-birch-wood font-bold">
-                Membership Plans
-              </span>
-              <h3 className="text-2xl font-bold text-ink-primary">Unbiased Seat Tariffs</h3>
-              <p className="text-xs text-ink-muted">Choose the perfect shift structure mapped to your focus habits.</p>
+          {/* Card 1: Top-Left Rectangle (Row 1, Cols 1-4) - Photo 1 */}
+          <div 
+            onClick={() => setLightboxImg({ src: "/assets/library_interior.png", alt: "Main library overview showcasing study cabins and bookshelves" })}
+            className="md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-1 h-[200px] md:h-[220px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer shadow-sm bg-bg-warm-elevated"
+          >
+            <Image 
+              src="/assets/library_interior.png" 
+              alt="Main Study Hall" 
+              fill 
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent p-6 flex flex-col justify-end text-left">
+              <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Main Focus Hall</span>
+              <h4 className="shrimp-display text-lg text-white">Ergonomic Work Desks</h4>
             </div>
+          </div>
 
-            {/* Sub-cards */}
-            <div className="flex flex-col gap-6">
-              {/* Shift 1 */}
-              <div className="bg-bg-warm-primary border border-stone-200/60 p-6 squircle-sm flex flex-col gap-4 hover:border-accent-birch-wood transition-colors duration-300">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h4 className="shrimp-display text-2xl text-ink-primary">HALF DAY SHIFT</h4>
-                    <p className="text-[11px] text-accent-birch-wood font-bold mt-0.5">Morning OR Evening Shift Only</p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-2xl font-bold text-ink-primary font-display font-bold">₹599</span>
-                    <span className="text-xs text-ink-muted">/mo</span>
-                  </div>
+          {/* Card 2: Top-Middle Square (Row 1, Cols 5-6) - Photo 2 */}
+          <div 
+            onClick={() => setLightboxImg({ src: "/assets/gallery_book_stack.png", alt: "Curated reference books and study material" })}
+            className="md:col-start-5 md:col-span-2 md:row-start-1 md:row-span-1 h-[200px] md:h-[220px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer shadow-sm bg-bg-warm-elevated"
+          >
+            <Image 
+              src="/assets/gallery_book_stack.png" 
+              alt="Reference Book Stacks" 
+              fill 
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent p-5 flex flex-col justify-end text-left">
+              <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Resources</span>
+              <h4 className="shrimp-display text-sm text-white">Reference Stacks</h4>
+            </div>
+          </div>
+
+          {/* Card 3: Tall Vertical Card 1 (Row 1-2, Cols 7-8) - Photo 3 */}
+          <div 
+            onClick={() => setLightboxImg({ src: "/assets/gallery_quiet_study.png", alt: "Ergonomic study cabins designed for maximum focus and zero distractions" })}
+            className="md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-2 h-[260px] md:h-[464px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer shadow-sm bg-bg-warm-elevated"
+          >
+            <Image 
+              src="/assets/gallery_quiet_study.png" 
+              alt="Quiet Study Cabins" 
+              fill 
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-6 flex flex-col justify-end text-left">
+              <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Zones</span>
+              <h4 className="shrimp-display text-xl text-white">Silent Study Cabins</h4>
+            </div>
+          </div>
+
+          {/* Card 4: Tall Vertical Card 2 - Specs Checklist (Row 1-2, Cols 9-10) - Matches 3 dots in sketch */}
+          <div className="md:col-start-9 md:col-span-2 md:row-start-1 md:row-span-2 h-auto md:h-[464px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between shadow-sm bg-bg-warm-elevated text-left">
+            <div className="flex flex-col gap-1">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-accent-birch-wood font-bold">Infrastructure</span>
+              <h4 className="text-lg font-bold text-ink-primary leading-tight">Sanctuary Specs</h4>
+            </div>
+            
+            {/* 3 Status indicators (vertical dots representation) */}
+            <div className="flex flex-col gap-6 py-4">
+              {/* Point 1 */}
+              <div className="flex gap-3 items-start">
+                <div className="w-10 h-10 rounded-full bg-[#1C2421] flex items-center justify-center text-white shrink-0 shadow-sm font-semibold text-xs border border-stone-800">
+                  🔋
                 </div>
-                <div className="h-[1px] w-full bg-stone-200/60" />
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-ink-secondary">
-                  {[
-                    "Allocated Ergonomic Work Desk",
-                    "High-Speed Wi-Fi Throughput",
-                    "Dedicated Socket Terminal",
-                    "Pantry Water Filter Access"
-                  ].map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-accent-aqua-core shrink-0" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs font-bold text-ink-primary">100% POWER BACKUP</span>
+                  <span className="text-[10px] text-ink-secondary leading-normal">Zero lag inverter array.</span>
+                </div>
               </div>
 
-              {/* Shift 2 */}
-              <div className="bg-bg-warm-primary border-2 border-accent-birch-wood/40 p-6 squircle-sm flex flex-col gap-4 hover:border-accent-birch-wood relative transition-colors duration-300">
-                {/* Popular Badge */}
-                <div className="absolute -top-3 right-6 bg-accent-birch-wood text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+              {/* Point 2 */}
+              <div className="flex gap-3 items-start">
+                <div className="w-10 h-10 rounded-full bg-[#7A8A84] flex items-center justify-center text-white shrink-0 shadow-sm font-semibold text-xs">
+                  🌐
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs font-bold text-ink-primary">1 GBPS FIBER WIFI</span>
+                  <span className="text-[10px] text-ink-secondary leading-normal">High throughput routers.</span>
+                </div>
+              </div>
+
+              {/* Point 3 */}
+              <div className="flex gap-3 items-start">
+                <div className="w-10 h-10 rounded-full bg-[#E8ECE9] flex items-center justify-center text-ink-primary shrink-0 shadow-sm font-semibold text-xs border border-stone-200">
+                  ❄️
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-xs font-bold text-ink-primary">CLIMATE CONTROL</span>
+                  <span className="text-[10px] text-ink-secondary leading-normal">Quiet AC locked at 22°C.</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-[10px] text-ink-muted leading-relaxed border-t border-stone-100 pt-3">
+              Calibrated elements for an uninterrupted focus workflow.
+            </div>
+          </div>
+
+          {/* Card 5: Top-Right Stat Card (Row 1, Cols 11-12) - Matches "99" in sketch */}
+          <div className="md:col-start-11 md:col-span-2 md:row-start-1 md:row-span-1 h-[150px] md:h-[220px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between shadow-sm bg-bg-warm-elevated text-left">
+            <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Capacity</span>
+            <div className="flex flex-col">
+              <span className="font-display text-5xl text-[#1F271B] font-bold tracking-tight">100+</span>
+              <span className="text-[11px] text-ink-secondary font-semibold mt-1">Ergonomic Focus Seats</span>
+            </div>
+          </div>
+
+          {/* Card 6: Large Bento Plans (Row 2-3, Cols 1-6) - Matches "Bento" block in sketch */}
+          <div className="md:col-start-1 md:col-span-6 md:row-start-2 md:row-span-2 h-auto md:h-[464px] rounded-[2.5rem] border border-stone-200/50 p-6 md:p-8 flex flex-col justify-between shadow-sm bg-bg-warm-elevated text-left">
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-accent-birch-wood font-bold">Subscription Tariffs</span>
+                <h4 className="text-2xl font-bold text-[#1F271B] leading-tight">Sanctuary Shift Plans</h4>
+              </div>
+              <span className="text-[10px] bg-accent-aqua-core/10 text-accent-aqua-core px-3 py-1 rounded-full font-bold uppercase tracking-wider">Unbiased</span>
+            </div>
+
+            {/* Side-by-side Shift Plans */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 items-stretch py-2">
+              {/* Plan A: Half Day Shift */}
+              <div className="border border-stone-200/60 hover:border-accent-birch-wood p-4 rounded-3xl flex flex-col justify-between transition-colors bg-bg-warm-primary/60 group">
+                <div>
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="text-xs font-bold text-[#1F271B]">HALF DAY SHIFT</span>
+                    <div className="text-right">
+                      <span className="text-base font-bold text-[#1F271B] font-display">₹599</span>
+                      <span className="text-[9px] text-ink-muted">/mo</span>
+                    </div>
+                  </div>
+                  <span className="text-[9px] text-accent-birch-wood font-bold uppercase tracking-wider block mb-3">Morning or Evening</span>
+                  <ul className="text-[10px] text-ink-secondary space-y-1.5">
+                    <li className="flex items-center gap-1.5">
+                      <Check className="w-3 h-3 text-accent-aqua-core shrink-0" />
+                      <span>Allocated Study Desk</span>
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <Check className="w-3 h-3 text-accent-aqua-core shrink-0" />
+                      <span>High-Speed Wi-Fi</span>
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <Check className="w-3 h-3 text-accent-aqua-core shrink-0" />
+                      <span>Power Socket Terminal</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Plan B: Full Day Shift */}
+              <div className="border-2 border-accent-birch-wood/40 hover:border-accent-birch-wood p-4 rounded-3xl flex flex-col justify-between relative transition-colors bg-bg-warm-primary/60">
+                <div className="absolute -top-2.5 right-4 bg-accent-birch-wood text-white text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full">
                   Recommended
                 </div>
-
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h4 className="shrimp-display text-2xl text-ink-primary">FULL DAY ACCESS</h4>
-                    <p className="text-[11px] text-accent-birch-wood font-bold mt-0.5">Complete Operating Hours Access</p>
+                <div>
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="text-xs font-bold text-[#1F271B]">FULL DAY ACCESS</span>
+                    <div className="text-right">
+                      <span className="text-base font-bold text-[#1F271B] font-display">₹1,099</span>
+                      <span className="text-[9px] text-ink-muted">/mo</span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <span className="text-2xl font-bold text-ink-primary font-display font-bold">₹1,099</span>
-                    <span className="text-xs text-ink-muted">/mo</span>
-                  </div>
-                </div>
-                <div className="h-[1px] w-full bg-stone-200/60" />
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-ink-secondary">
-                  {[
-                    "All Operating Shifts Unlocked",
-                    "Premium Locker Priority",
-                    "Unrestricted Study Hours",
-                    "Free Cafe QR Coupon / Month",
-                    "Dedicated Double Real Estate",
-                    "Silence Room Priority Entry"
-                  ].map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-accent-aqua-core shrink-0" />
-                      <span>{feat}</span>
+                  <span className="text-[9px] text-accent-birch-wood font-bold uppercase tracking-wider block mb-3">Complete Hours Access</span>
+                  <ul className="text-[10px] text-ink-secondary space-y-1.5">
+                    <li className="flex items-center gap-1.5">
+                      <Check className="w-3 h-3 text-accent-aqua-core shrink-0" />
+                      <span>All Operating Shifts Unlocked</span>
                     </li>
-                  ))}
-                </ul>
+                    <li className="flex items-center gap-1.5">
+                      <Check className="w-3 h-3 text-accent-aqua-core shrink-0" />
+                      <span>Premium Locker Priority</span>
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <Check className="w-3 h-3 text-accent-aqua-core shrink-0" />
+                      <span>Silence Room Entry Priority</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             <button
               onClick={handleScrollToForm}
-              className="w-full py-4 bg-ink-primary hover:bg-[#2c3632] text-white text-xs uppercase tracking-widest font-bold squircle-sm transition-all duration-300 active:scale-[0.98] cursor-pointer mt-4"
+              className="w-full py-3.5 bg-ink-primary hover:bg-[#2c3632] text-white text-[11px] uppercase tracking-widest font-bold rounded-2xl transition-all duration-300 active:scale-[0.98] cursor-pointer mt-4"
             >
-              Choose Subscription Shift
+              Enquire & Reserve Seat
             </button>
           </div>
 
-          {/* Bento Block B: INTERACTIVE LUXURY SCENIC GALLERY (6 Columns) */}
-          <div className="lg:col-span-6 bg-bg-warm-elevated border border-stone-200/50 p-8 squircle-md shadow-sm flex flex-col gap-6 h-full justify-between">
-            <div className="flex flex-col gap-1">
-              <span className="text-xs uppercase tracking-wider text-accent-birch-wood font-bold">
-                Interior Tour
-              </span>
-              <h3 className="text-2xl font-bold text-ink-primary">Luxury Scenic Gallery</h3>
-              <p className="text-xs text-ink-muted">Click on a module to expand details and inspect the sanctuary space.</p>
-            </div>
-
-            {/* Masonry Puzzle Grid */}
-            <div className="grid grid-cols-2 gap-4 h-[420px] md:h-[480px]">
-              {galleryImages.map((img, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setLightboxImg(img)}
-                  className={`${img.span} relative overflow-hidden rounded-[1.8rem] border border-stone-200/50 group cursor-pointer`}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                  {/* Hover mask */}
-                  <div className="absolute inset-0 bg-ink-primary/0 group-hover:bg-ink-primary/20 transition-colors duration-300 flex items-center justify-center">
-                    <span className="opacity-0 group-hover:opacity-100 bg-white/90 text-ink-primary text-xs font-semibold px-4 py-2 rounded-full shadow transition-opacity duration-300">
-                      Expand View
-                    </span>
-                  </div>
-                </div>
-              ))}
+          {/* Card 9: Middle-Right Stat Card (Row 2, Cols 11-12) - Matches "Aa" in sketch */}
+          <div className="md:col-start-11 md:col-span-2 md:row-start-2 md:row-span-1 h-[150px] md:h-[220px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between shadow-sm bg-bg-warm-elevated text-left">
+            <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Perks</span>
+            <div className="flex flex-col">
+              <span className="font-display text-5xl text-[#1F271B] font-bold tracking-tight">10%</span>
+              <span className="text-[11px] text-ink-secondary font-semibold mt-1">Noiric Cafe Discount</span>
             </div>
           </div>
 
-          {/* Bento Block C: THE AQUA LOCATION ENGINE (12 Columns) */}
-          <div className="col-span-1 lg:col-span-12 bg-bg-warm-elevated border border-stone-200/50 p-8 squircle-md shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
+          {/* Card 7: Bottom-Middle Square (Row 3, Cols 7-8) - Photo 4 */}
+          <div 
+            onClick={() => setLightboxImg({ src: "/assets/gallery_relax_lounge.png", alt: "Premium relaxation lounge to take coffee breaks and refresh" })}
+            className="md:col-start-7 md:col-span-2 md:row-start-3 md:row-span-1 h-[200px] md:h-[220px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer shadow-sm bg-bg-warm-elevated"
+          >
+            <Image 
+              src="/assets/gallery_relax_lounge.png" 
+              alt="Recharge Lounge" 
+              fill 
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent p-5 flex flex-col justify-end text-left">
+              <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Lounge</span>
+              <h4 className="shrimp-display text-sm text-white">Recharge Lounge</h4>
+            </div>
+          </div>
+
+          {/* Card 8: Bottom-Right Location Map Card (Row 3, Cols 9-12) */}
+          <div className="md:col-start-9 md:col-span-4 md:row-start-3 md:row-span-1 h-auto md:h-[220px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between shadow-sm bg-bg-warm-elevated text-left relative overflow-hidden">
+            {/* Map grid background pattern */}
+            <div className="absolute inset-0 opacity-[0.06] pointer-events-none bg-[#0e1715]" 
+                 style={{
+                   backgroundImage: "radial-gradient(#00A8CC 1px, transparent 1px), linear-gradient(rgba(0, 168, 204, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 168, 204, 0.1) 1px, transparent 1px)",
+                   backgroundSize: "16px 16px, 32px 32px, 32px 32px"
+                 }} 
+            />
             
-            {/* Topography Aqua-themed map representation */}
-            <div className="lg:col-span-7 h-[340px] w-full rounded-[2rem] border border-stone-200/60 overflow-hidden relative bg-[#0e1715] select-none shadow-inner">
-              {/* Radial grids and coordinates coordinates */}
-              <div className="absolute inset-0 opacity-20 pointer-events-none" 
-                   style={{
-                     backgroundImage: "radial-gradient(#00A8CC 1px, transparent 1px), linear-gradient(rgba(0, 168, 204, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 168, 204, 0.1) 1px, transparent 1px)",
-                     backgroundSize: "20px 20px, 40px 40px, 40px 40px"
-                   }} 
-              />
-              {/* Stylized vector map paths */}
-              <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 600 300">
-                <path d="M 50,50 L 550,50 M 50,150 L 550,150 M 50,250 L 550,250 M 150,50 L 150,250 M 350,50 L 350,250 M 450,50 L 450,250" stroke="#00A8CC" strokeWidth="1.5" />
-                <circle cx="350" cy="150" r="80" stroke="#00A8CC" strokeWidth="1" strokeDasharray="4 4" />
-                <circle cx="350" cy="150" r="140" stroke="#00A8CC" strokeWidth="0.5" />
-              </svg>
-
-              {/* Pulsing Pin Marker */}
-              <div className="absolute top-[150px] left-[350px] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                <div className="relative flex items-center justify-center">
-                  <span className="absolute inline-flex h-12 w-12 rounded-full bg-accent-aqua-core opacity-40 animate-ping" />
-                  <div className="w-8 h-8 rounded-full bg-accent-aqua-core flex items-center justify-center border border-white text-white shadow-lg relative z-10 hover:scale-110 transition-transform">
-                    <MapPin className="w-4.5 h-4.5" />
-                  </div>
-                </div>
-                <div className="mt-2 bg-[#1C2421]/90 backdrop-blur border border-accent-aqua-core/30 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
-                  MindSpace HQ
-                </div>
-              </div>
-
-              {/* Holographic scanner line animation */}
-              <div className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-accent-aqua-core to-transparent opacity-60 animate-[bounce_5s_infinite_ease-in-out]" />
-            </div>
-
-            {/* Address Details & Copy Utility */}
-            <div className="lg:col-span-5 flex flex-col gap-6 lg:pl-4 relative z-10">
-              <div className="flex flex-col gap-1">
-                <span className="text-xs uppercase tracking-wider text-accent-birch-wood font-bold">
-                  Location Engine
-                </span>
-                <h3 className="text-2xl font-bold text-ink-primary">Pinpoint Our Coordinates</h3>
-                <p className="text-xs text-ink-muted">We are located in the heart of Noida's intellectual district, connected directly with transit links.</p>
-              </div>
-
-              {/* Address detail card */}
-              <div className="bg-bg-warm-primary border border-stone-200/50 p-6 squircle-sm relative overflow-hidden">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-ink-primary mb-2">Physical Location Address</h4>
-                <p className="text-xs text-ink-secondary leading-relaxed max-w-sm mb-4">
-                  MindSpace Library, 3rd Floor, Birch Plaza, Knowledge Hub, Sector 62, Noida, Uttar Pradesh, 201301
+            <div className="relative z-10 flex justify-between items-start gap-4">
+              <div className="flex flex-col">
+                <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Location coordinates</span>
+                <h4 className="text-sm font-bold text-ink-primary mt-0.5">Find MindSpace HQ</h4>
+                <p className="text-[10px] text-ink-secondary leading-relaxed max-w-[220px] mt-1">
+                  MG Road, Near Goyal Super Mart, Patpariya, Ambikapur, Chhattisgarh 497001
                 </p>
-                <div className="flex flex-wrap gap-3 items-center">
-                  <button
-                    onClick={handleCopyCoords}
-                    className="flex items-center gap-2 px-4 py-2.5 bg-white border border-stone-200 hover:border-accent-aqua-core hover:text-accent-aqua-core rounded-full text-xs font-semibold text-ink-secondary shadow-sm active:scale-95 transition-all cursor-pointer"
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-green-500" />
-                        <span className="text-green-600">Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Copy Coordinates</span>
-                      </>
-                    )}
-                  </button>
-                  <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-1.5 px-4 py-2.5 bg-accent-birch-wood hover:bg-[#c2a17b] text-white rounded-full text-xs font-semibold shadow-sm active:scale-95 transition-all cursor-pointer"
-                  >
-                    <span>Google Maps</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
+              </div>
+
+              {/* Coordinates display with click to copy */}
+              <div className="flex flex-col gap-1 items-end shrink-0">
+                <span className="text-[9px] font-mono text-ink-muted bg-stone-100 px-2 py-0.5 rounded border border-stone-200">22.1245, 83.1936</span>
+                <button
+                  onClick={handleCopyCoords}
+                  className="text-[9px] font-bold text-accent-aqua-core hover:text-ink-primary transition-colors cursor-pointer"
+                >
+                  {copied ? "COPIED!" : "COPY COORDS"}
+                </button>
               </div>
             </div>
 
-            {/* Absolute floating confirmation alert badge */}
+            {/* Coordinates copied notification panel */}
             {copied && (
-              <div className="absolute bottom-6 right-6 bg-accent-aqua-core text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 animate-[slideUp_0.3s_ease-out] z-30">
-                <Check className="w-4 h-4" />
-                <span>Coordinates copied to clipboard! (28.6273, 77.3725)</span>
+              <div className="absolute inset-x-0 bottom-0 bg-accent-aqua-core text-white text-[10px] font-bold py-2 text-center z-20 animate-[slideUp_0.2s_ease-out]">
+                Coordinates Copied: 22.1245, 83.1936
               </div>
             )}
+
+            <div className="relative z-10 flex gap-2 pt-2">
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full py-2.5 bg-accent-birch-wood hover:bg-[#c2a17b] text-white rounded-xl text-center text-[10px] font-bold shadow-sm transition-all cursor-pointer flex items-center justify-center gap-1"
+              >
+                <span>Open Google Maps Navigation</span>
+                <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+            </div>
           </div>
 
         </div>
@@ -309,7 +341,7 @@ export default function BentoMatrix() {
             </button>
             {/* Description panel */}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8 text-white text-left">
-              <p className="text-xs uppercase tracking-wider text-accent-birch-wood font-bold mb-1">Interactive Gallery View</p>
+              <p className="text-xs uppercase tracking-wider text-accent-birch-wood font-bold mb-1">Sanctuary Gallery View</p>
               <p className="text-sm font-semibold">{lightboxImg.alt}</p>
             </div>
           </div>
