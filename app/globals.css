@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-warm-primary: #FDFBF7;
+  --color-bg-warm-secondary: #FAF4E8;
+  --color-bg-warm-elevated: #FFFDF9;
+  
+  --color-ink-primary: #1C2421;
+  --color-ink-secondary: #4A5551;
+  --color-ink-muted: #7A8A84;
+
+  --color-accent-aqua-core: #00A8CC;
+  --color-accent-aqua-glow: rgba(0, 168, 204, 0.12);
+  --color-accent-birch-wood: #D4B28C;
+  --color-accent-birch-light: #F4EBE1;
+
+  --font-display: 'Shrimp-Core', 'Anton', 'Impact', sans-serif;
+  --font-body: 'Space Grotesk', 'Satoshi', sans-serif;
+}
+
+:root {
+  --bg-warm-primary: #FDFBF7;
+  --bg-warm-secondary: #FAF4E8;
+  --bg-warm-elevated: #FFFDF9;
+  --ink-primary: #1C2421;
+  --ink-secondary: #4A5551;
+  --ink-muted: #7A8A84;
+  --accent-aqua-core: #00A8CC;
+  --accent-aqua-glow: rgba(0, 168, 204, 0.12);
+  --accent-birch-wood: #D4B28C;
+  --accent-birch-light: #F4EBE1;
+  --accent-aqua-gradient: linear-gradient(135deg, #00A8CC 0%, #14B8A6 100%);
+}
+
+body {
+  background-color: var(--bg-warm-primary);
+  color: var(--ink-primary);
+  font-family: 'Space Grotesk', 'Satoshi', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Typography Custom SHRIMP display engine */
+.shrimp-display {
+  font-family: 'Shrimp-Core', 'Anton', 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em; /* thoda sahi horizontal spacing */
+  line-height: 0.92;       /* thoda sahi vertical spacing */
+}
+
+/* Custom Birch Card */
+.birch-card {
+  border-left: 6px solid var(--accent-birch-wood);
+  background-color: var(--bg-warm-elevated);
+}
+
+/* Continuous mathematical curves utilities */
+.squircle-lg {
+  border-radius: 3.5rem;
+}
+
+.squircle-md {
+  border-radius: 2.5rem;
+}
+
+.squircle-sm {
+  border-radius: 2rem;
+}
+
+/* Smooth micro-interactions & Easing Matrix */
+.fluid-transition {
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fluid-click:active {
+  transform: scale(0.98);
+}
+
+/* Custom visual styles */
+.gradient-aqua-btn {
+  background: var(--accent-aqua-gradient);
+}
+
+/* Aura glowing states */
+.aura-glow-illuminated {
+  box-shadow: 0 0 25px var(--accent-aqua-glow);
+  border-color: var(--accent-aqua-core) !important;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* custom animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 168, 204, 0.15);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 168, 204, 0.4);
+    transform: scale(1.05);
+  }
+}
+
+.pulse-glow-active {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Bento custom overlay lightbox animations */
+.lightbox-overlay {
+  backdrop-filter: blur(10px);
+  background-color: rgba(28, 36, 33, 0.85);
+}
+
+/* Birch wood texture stripe */
+.birch-wood-stripe {
+  height: 6px;
+  width: 100%;
+  background-color: var(--accent-birch-wood);
+}
