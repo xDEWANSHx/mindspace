@@ -26,15 +26,49 @@ export default function BentoMatrix() {
     }
   };
 
+  const getGridTemplates = () => {
+    // Default 12 columns
+    let cols = Array(12).fill("1fr");
+    // Default 3 rows
+    let rows = Array(3).fill("1fr");
+
+    if (activeHover !== null) {
+      const expansions = {
+        1: { cols: [0, 1, 2, 3], rows: [0] },
+        2: { cols: [4, 5], rows: [0] },
+        3: { cols: [6, 7], rows: [0, 1] },
+        4: { cols: [8, 9], rows: [0, 1] },
+        5: { cols: [10, 11], rows: [0] },
+        6: { cols: [0, 1, 2, 3, 4, 5], rows: [1, 2] },
+        9: { cols: [10, 11], rows: [1] },
+        7: { cols: [6, 7], rows: [2] },
+        8: { cols: [8, 9, 10, 11], rows: [2] },
+      };
+
+      const target = expansions[activeHover];
+      if (target) {
+        cols = cols.map((val, idx) => (target.cols.includes(idx) ? "1.8fr" : "0.6fr"));
+        rows = rows.map((val, idx) => (target.rows.includes(idx) ? "1.8fr" : "0.6fr"));
+      }
+    }
+
+    return {
+      gridTemplateColumns: cols.join(" "),
+      gridTemplateRows: rows.join(" "),
+    };
+  };
+
   const getCardHoverClass = (idx) => {
     if (activeHover === null) {
-      return "scale-100 opacity-100 z-10";
+      return "opacity-100 z-10 shadow-sm";
     }
     if (activeHover === idx) {
-      return "scale-[1.025] opacity-100 z-20 shadow-xl border-accent-birch-wood/80 ring-1 ring-accent-birch-wood/20";
+      return "opacity-100 z-20 shadow-xl border-accent-birch-wood/80 ring-1 ring-accent-birch-wood/20";
     }
-    return "scale-[0.975] opacity-60 z-0";
+    return "opacity-55 z-0";
   };
+
+  const templates = getGridTemplates();
 
   return (
     <section id="bento-structural-grid" className="py-24 lg:py-32 bg-bg-warm-secondary/30 relative">
@@ -57,14 +91,20 @@ export default function BentoMatrix() {
         </div>
 
         {/* 9-Column Bento Grid matching user sketch */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full relative">
+        <div 
+          className="dynamic-bento-grid gap-6 w-full relative md:h-[680px]"
+          style={{
+            "--grid-cols-template": templates.gridTemplateColumns,
+            "--grid-rows-template": templates.gridTemplateRows,
+          }}
+        >
           
           {/* Card 1: Top-Left Rectangle (Row 1, Cols 1-4) - Photo 1 */}
           <div 
             onMouseEnter={() => setActiveHover(1)}
             onMouseLeave={() => setActiveHover(null)}
             onClick={() => setLightboxImg({ src: "/assets/library_interior.png", alt: "Main library overview showcasing study cabins and bookshelves" })}
-            className={`md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-1 h-[200px] md:h-[220px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(1)}`}
+            className={`md:col-start-1 md:col-span-4 md:row-start-1 md:row-span-1 h-[200px] md:h-full relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(1)}`}
           >
             <Image 
               src="/assets/library_interior.png" 
@@ -83,7 +123,7 @@ export default function BentoMatrix() {
             onMouseEnter={() => setActiveHover(2)}
             onMouseLeave={() => setActiveHover(null)}
             onClick={() => setLightboxImg({ src: "/assets/gallery_book_stack.png", alt: "Curated reference books and study material" })}
-            className={`md:col-start-5 md:col-span-2 md:row-start-1 md:row-span-1 h-[200px] md:h-[220px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(2)}`}
+            className={`md:col-start-5 md:col-span-2 md:row-start-1 md:row-span-1 h-[200px] md:h-full relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(2)}`}
           >
             <Image 
               src="/assets/gallery_book_stack.png" 
@@ -102,7 +142,7 @@ export default function BentoMatrix() {
             onMouseEnter={() => setActiveHover(3)}
             onMouseLeave={() => setActiveHover(null)}
             onClick={() => setLightboxImg({ src: "/assets/gallery_quiet_study.png", alt: "Ergonomic study cabins designed for maximum focus and zero distractions" })}
-            className={`md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-2 h-[260px] md:h-[464px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(3)}`}
+            className={`md:col-start-7 md:col-span-2 md:row-start-1 md:row-span-2 h-[260px] md:h-full relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(3)}`}
           >
             <Image 
               src="/assets/gallery_quiet_study.png" 
@@ -120,7 +160,7 @@ export default function BentoMatrix() {
           <div 
             onMouseEnter={() => setActiveHover(4)}
             onMouseLeave={() => setActiveHover(null)}
-            className={`md:col-start-9 md:col-span-2 md:row-start-1 md:row-span-2 h-auto md:h-[464px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(4)}`}
+            className={`md:col-start-9 md:col-span-2 md:row-start-1 md:row-span-2 h-auto md:h-full rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(4)}`}
           >
             <div className="flex flex-col gap-1">
               <span className="text-[10px] uppercase tracking-[0.2em] text-accent-birch-wood font-bold">Infrastructure</span>
@@ -172,7 +212,7 @@ export default function BentoMatrix() {
           <div 
             onMouseEnter={() => setActiveHover(5)}
             onMouseLeave={() => setActiveHover(null)}
-            className={`md:col-start-11 md:col-span-2 md:row-start-1 md:row-span-1 h-[150px] md:h-[220px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(5)}`}
+            className={`md:col-start-11 md:col-span-2 md:row-start-1 md:row-span-1 h-[150px] md:h-full rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(5)}`}
           >
             <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Capacity</span>
             <div className="flex flex-col">
@@ -185,7 +225,7 @@ export default function BentoMatrix() {
           <div 
             onMouseEnter={() => setActiveHover(6)}
             onMouseLeave={() => setActiveHover(null)}
-            className={`md:col-start-1 md:col-span-6 md:row-start-2 md:row-span-2 h-auto md:h-[464px] rounded-[2.5rem] border border-stone-200/50 p-6 md:p-8 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(6)}`}
+            className={`md:col-start-1 md:col-span-6 md:row-start-2 md:row-span-2 h-auto md:h-full rounded-[2.5rem] border border-stone-200/50 p-6 md:p-8 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(6)}`}
           >
             <div className="flex justify-between items-start mb-4">
               <div className="flex flex-col gap-1">
@@ -269,7 +309,7 @@ export default function BentoMatrix() {
           <div 
             onMouseEnter={() => setActiveHover(9)}
             onMouseLeave={() => setActiveHover(null)}
-            className={`md:col-start-11 md:col-span-2 md:row-start-2 md:row-span-1 h-[150px] md:h-[220px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(9)}`}
+            className={`md:col-start-11 md:col-span-2 md:row-start-2 md:row-span-1 h-[150px] md:h-full rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(9)}`}
           >
             <span className="text-[9px] uppercase tracking-wider text-accent-birch-wood font-bold">Perks</span>
             <div className="flex flex-col">
@@ -283,7 +323,7 @@ export default function BentoMatrix() {
             onMouseEnter={() => setActiveHover(7)}
             onMouseLeave={() => setActiveHover(null)}
             onClick={() => setLightboxImg({ src: "/assets/gallery_relax_lounge.png", alt: "Premium relaxation lounge to take coffee breaks and refresh" })}
-            className={`md:col-start-7 md:col-span-2 md:row-start-3 md:row-span-1 h-[200px] md:h-[220px] relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(7)}`}
+            className={`md:col-start-7 md:col-span-2 md:row-start-3 md:row-span-1 h-[200px] md:h-full relative overflow-hidden rounded-[2.5rem] border border-stone-200/50 group cursor-pointer bg-bg-warm-elevated transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(7)}`}
           >
             <Image 
               src="/assets/gallery_relax_lounge.png" 
@@ -301,7 +341,7 @@ export default function BentoMatrix() {
           <div 
             onMouseEnter={() => setActiveHover(8)}
             onMouseLeave={() => setActiveHover(null)}
-            className={`md:col-start-9 md:col-span-4 md:row-start-3 md:row-span-1 h-auto md:h-[220px] rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left relative overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(8)}`}
+            className={`md:col-start-9 md:col-span-4 md:row-start-3 md:row-span-1 h-auto md:h-full rounded-[2.5rem] border border-stone-200/50 p-6 flex flex-col justify-between bg-bg-warm-elevated text-left relative overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${getCardHoverClass(8)}`}
           >
             {/* Map grid background pattern */}
             <div className="absolute inset-0 opacity-[0.06] pointer-events-none bg-[#0e1715]" 

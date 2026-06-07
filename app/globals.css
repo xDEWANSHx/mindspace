@@ -124,3 +124,18 @@ body {
   width: 100%;
   background-color: var(--accent-birch-wood);
 }
+
+/* Dynamic Bento Grid track animation */
+.dynamic-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .dynamic-bento-grid {
+    grid-template-columns: var(--grid-cols-template, repeat(12, minmax(0, 1fr)));
+    grid-template-rows: var(--grid-rows-template, repeat(3, minmax(0, 1fr)));
+    transition: grid-template-columns 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
