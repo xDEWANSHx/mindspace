@@ -53,14 +53,8 @@ export default function Home() {
         {/* Section 4.5: Noiric Cafe × MindSpace Collab */}
         <NoiricCafeSection />
 
-        {/* ─── Divider: Right → Center ─── */}
-        <SectionDivider direction="right" />
-
         {/* Section 5: Founder Editorial Focus Statement */}
         <FounderNote />
-
-        {/* ─── Divider: Left → Center ─── */}
-        <SectionDivider direction="left" />
 
         {/* Section 6: Gallery & Plans */}
         <BentoMatrix />

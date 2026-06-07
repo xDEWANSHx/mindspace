@@ -71,6 +71,9 @@ export default function FounderNote() {
         </div>
 
       </div>
+      
+      {/* Solid divider at the end of the section */}
+      <div className="birch-wood-stripe" />
     </section>
   );
 }
