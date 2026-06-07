@@ -101,15 +101,8 @@ export default function HeroSection() {
     }
   };
 
-  const handleScrollToSection = (id) => {
-    const sec = document.getElementById(id);
-    if (sec) {
-      sec.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <div className="w-full flex flex-col min-h-screen relative bg-bg-warm-primary">
+    <div className="w-full flex flex-col min-h-screen relative bg-bg-warm-primary pt-20">
       {/* SVG clipPath Definition */}
       <svg className="absolute w-0 h-0" width="0" height="0">
         <defs>
@@ -122,42 +115,6 @@ export default function HeroSection() {
         </defs>
       </svg>
 
-      {/* Section 1.1: Responsive Elastic Navbar */}
-      <header className="w-full max-w-7xl mx-auto h-24 px-8 flex items-center justify-between z-40 relative">
-        <div className="flex items-center gap-3 cursor-pointer select-none animate-[fadeIn_0.5s_ease-out]" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="relative w-14 h-14 bg-white border border-stone-200/50 rounded-full overflow-hidden p-0.5 shadow-sm hover:scale-105 transition-transform duration-300">
-            <Image src="/assets/logo.jpg" alt="MindSpace Library Logo" fill className="object-contain" />
-          </div>
-          <span className="text-lg font-bold tracking-tight text-ink-primary hidden sm:inline">MindSpace</span>
-        </div>
-
-        <nav className="hidden md:flex items-center gap-10">
-          {[
-            { label: "Features", target: "co-brand-pantry-matrix" },
-            { label: "Spaces", target: "cinematic-magnetic-scroller" },
-            { label: "Tariff", target: "bento-structural-grid" },
-            { label: "Find Us", target: "bento-structural-grid" }
-          ].map((item, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleScrollToSection(item.target)}
-              className="relative py-2 text-ink-secondary hover:text-ink-primary font-medium text-sm transition-colors cursor-pointer group"
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-accent-birch-wood transition-all duration-300 group-hover:w-full group-hover:left-0" />
-            </button>
-          ))}
-        </nav>
-
-        <div>
-          <button
-            onClick={handleScrollToForm}
-            className="px-8 py-3 bg-gradient-to-r from-accent-aqua-core to-[#14B8A6] text-white rounded-full font-medium shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer"
-          >
-            Enquire Now
-          </button>
-        </div>
-      </header>
       {/* Section 1.2: Liquid Interlocking Hero Split Screen */}
       <section id="hero-fluid-volume" className="relative flex-1 w-full flex flex-col justify-center py-6 lg:py-0 min-h-[50vh] lg:min-h-[75vh]">
         {/* Left Column Text (Aligned to container) */}

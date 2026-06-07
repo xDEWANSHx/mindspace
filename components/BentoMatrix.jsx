@@ -49,24 +49,27 @@ export default function BentoMatrix() {
   };
 
   return (
-    <section id="bento-structural-grid" className="py-32 bg-bg-warm-secondary/30 relative">
-      <div className="w-full max-w-7xl mx-auto px-6 flex flex-col gap-16">
+    <section id="bento-structural-grid" className="py-24 lg:py-32 bg-bg-warm-secondary/30 relative">
+      <div className="w-full max-w-7xl mx-auto px-6 flex flex-col gap-12">
         
         {/* Section Header */}
         <div className="flex flex-col gap-4 text-left max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] font-bold text-accent-birch-wood">
-            Services & Spaces
-          </span>
-          <h2 className="shrimp-display text-5xl md:text-6xl text-ink-primary font-bold">
-            MINDSPACE BENTO ENGINE
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-[2px] bg-accent-birch-wood" />
+            <span className="text-xs uppercase tracking-[0.3em] font-extrabold text-accent-birch-wood">
+              Explore & Choose
+            </span>
+          </div>
+          <h2 className="shrimp-display text-4xl md:text-5xl lg:text-6xl text-ink-primary leading-[0.95]">
+            GALLERY & <span className="text-accent-aqua-core">PLANS</span>
           </h2>
-          <p className="text-ink-secondary text-sm md:text-base">
-            Explore premium memberships, tour our architectural interiors, and pinpoint our digital sanctuary location.
+          <p className="text-ink-secondary text-sm md:text-base leading-relaxed">
+            Explore our spaces, choose your plan, and find your way to us.
           </p>
         </div>
 
         {/* 12-Column Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 w-full">
           
           {/* Bento Block A: UNBIASED PRICING TIERS (6 Columns) */}
           <div className="lg:col-span-6 bg-bg-warm-elevated border border-stone-200/50 p-8 squircle-md shadow-sm flex flex-col justify-between gap-8 h-full">
@@ -163,12 +166,12 @@ export default function BentoMatrix() {
             </div>
 
             {/* Masonry Puzzle Grid */}
-            <div className="grid grid-cols-2 gap-4 h-[420px] md:h-[450px]">
+            <div className="grid grid-cols-2 gap-4 h-[420px] md:h-[480px]">
               {galleryImages.map((img, idx) => (
                 <div
                   key={idx}
                   onClick={() => setLightboxImg(img)}
-                  className={`${img.span} relative overflow-hidden rounded-[1.5rem] border border-stone-200/50 group cursor-pointer`}
+                  className={`${img.span} relative overflow-hidden rounded-[1.8rem] border border-stone-200/50 group cursor-pointer`}
                 >
                   <Image
                     src={img.src}
@@ -191,7 +194,7 @@ export default function BentoMatrix() {
           <div className="col-span-1 lg:col-span-12 bg-bg-warm-elevated border border-stone-200/50 p-8 squircle-md shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
             
             {/* Topography Aqua-themed map representation */}
-            <div className="lg:col-span-7 h-[300px] w-full rounded-[2rem] border border-stone-200/60 overflow-hidden relative bg-[#0e1715] select-none shadow-inner">
+            <div className="lg:col-span-7 h-[340px] w-full rounded-[2rem] border border-stone-200/60 overflow-hidden relative bg-[#0e1715] select-none shadow-inner">
               {/* Radial grids and coordinates coordinates */}
               <div className="absolute inset-0 opacity-20 pointer-events-none" 
                    style={{

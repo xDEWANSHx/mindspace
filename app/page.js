@@ -7,6 +7,7 @@ import CoBrandSynergy from "@/components/CoBrandSynergy";
 import FounderNote from "@/components/FounderNote";
 import BentoMatrix from "@/components/BentoMatrix";
 import EnquiryForm from "@/components/EnquiryForm";
+import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -20,10 +21,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-warm-primary selection:bg-accent-aqua-core selection:text-white">
+      {/* Fixed Premium Navbar */}
+      <Navbar />
+
       {/* Main landing sections */}
       <main className="flex-1">
         
-        {/* Section 1: Navbar & Wave Hero Interlocking Layout */}
+        {/* Section 1: Wave Hero Interlocking Layout */}
         <HeroSection />
 
         {/* Section 2: Ambient Squircle Statistics Controllers */}
