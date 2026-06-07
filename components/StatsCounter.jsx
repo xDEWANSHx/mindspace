@@ -119,7 +119,7 @@ export default function StatsCounter() {
               </div>
             )}
 
-            <h3 className="shrimp-display text-3xl lg:text-4xl text-accent-aqua-core font-bold relative z-10">
+            <h3 className="shrimp-display text-3xl lg:text-4xl text-[#1F271B] font-bold relative z-10">
               {stat.value}
             </h3>
             <p className="text-sm font-medium text-ink-secondary leading-snug mt-4 relative z-10">

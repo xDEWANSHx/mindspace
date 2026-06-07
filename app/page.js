@@ -4,10 +4,12 @@ import HeroSection from "@/components/HeroSection";
 import StatsCounter from "@/components/StatsCounter";
 import CinematicScroller from "@/components/CinematicScroller";
 import CoBrandSynergy from "@/components/CoBrandSynergy";
+import NoiricCafeSection from "@/components/NoiricCafeSection";
 import FounderNote from "@/components/FounderNote";
 import BentoMatrix from "@/components/BentoMatrix";
 import EnquiryForm from "@/components/EnquiryForm";
 import Navbar from "@/components/Navbar";
+import SectionDivider from "@/components/SectionDivider";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -33,17 +35,38 @@ export default function Home() {
         {/* Section 2: Ambient Squircle Statistics Controllers */}
         <StatsCounter />
 
+        {/* ─── Divider: Left → Center ─── */}
+        <SectionDivider direction="left" />
+
         {/* Section 3: Cinematic Scroll Workstation Zoom View */}
         <CinematicScroller />
 
-        {/* Section 4: Co-Branding Synergy Hub (Noiric Cafe × MindSpace) */}
+        {/* ─── Divider: Right → Center ─── */}
+        <SectionDivider direction="right" />
+
+        {/* Section 4: MindSpace Features */}
         <CoBrandSynergy />
+
+        {/* ─── Divider: Left → Center ─── */}
+        <SectionDivider direction="left" />
+
+        {/* Section 4.5: Noiric Cafe × MindSpace Collab */}
+        <NoiricCafeSection />
+
+        {/* ─── Divider: Right → Center ─── */}
+        <SectionDivider direction="right" />
 
         {/* Section 5: Founder Editorial Focus Statement */}
         <FounderNote />
 
-        {/* Section 6: Non-Blocky Bento Matrix Layout (Tariff, Tour, Location Map) */}
+        {/* ─── Divider: Left → Center ─── */}
+        <SectionDivider direction="left" />
+
+        {/* Section 6: Gallery & Plans */}
         <BentoMatrix />
+
+        {/* ─── Divider: Right → Center ─── */}
+        <SectionDivider direction="right" />
 
         {/* Section 7: Lead CRM Enquiry Engine Form */}
         <EnquiryForm />

@@ -136,12 +136,12 @@ export default function HeroSection() {
               </div>
               
               {/* Main Heading with Microinteractions */}
-              <h1 className="shrimp-display text-7xl md:text-8xl lg:text-[7.5rem] text-ink-primary leading-[0.95] tracking-tight">
+              <h1 className="shrimp-display text-7xl md:text-8xl lg:text-[7.5rem] text-[#1F271B] leading-[0.95] tracking-tight">
                 <span className="block transform transition-transform duration-700 ease-out group-hover/heading:translate-x-4">
                   MINDSPACE
                 </span>
                 <span className="relative inline-block mt-2">
-                  <span className="relative z-10 text-ink-primary">
+                  <span className="relative z-10 text-[#1F271B]">
                     LIBRARY
                   </span>
                   {/* Highlighter Marker Effect */}
