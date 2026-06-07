@@ -29,8 +29,8 @@ export default function SectionDivider({ direction = "left" }) {
   }, []);
 
   const isLeft = direction === "left";
-  const height = 6; // px
-  const slant = 14; // px
+  const height = 12; // px
+  const slant = 24; // px
 
   return (
     <div
